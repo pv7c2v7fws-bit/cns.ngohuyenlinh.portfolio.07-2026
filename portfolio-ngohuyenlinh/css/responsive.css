@@ -1,0 +1,456 @@
+/* =====================================================
+   RESPONSIVE / MOBILE STYLES
+   Order: Hamburger -> Tablet (1024px) -> Mobile (700px) -> Small (420px)
+===================================================== */
+
+/* ---------- HAMBURGER BUTTON (hidden on desktop) ---------- */
+.hamburger{
+    display:none;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:5px;
+    width:42px;
+    height:42px;
+    border:none;
+    border-radius:12px;
+    background:transparent;
+    cursor:pointer;
+    z-index:1100;
+}
+
+.hamburger span{
+    display:block;
+    width:24px;
+    height:3px;
+    border-radius:3px;
+    background:var(--maroon);
+    transition:.3s;
+}
+
+body.dark .hamburger span{
+    background:var(--cream);
+}
+
+.hamburger.active span:nth-child(1){
+    transform:translateY(8px) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2){
+    opacity:0;
+}
+
+.hamburger.active span:nth-child(3){
+    transform:translateY(-8px) rotate(-45deg);
+}
+
+/* ---------- TABLET (<=1024px) ---------- */
+@media(max-width:1024px){
+
+    .hero{
+        flex-direction:column;
+        text-align:center;
+        gap:50px;
+    }
+
+    .hero-button{
+        justify-content:center;
+    }
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .overview-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .glass-circle{
+        width:320px;
+        height:320px;
+    }
+
+    .about-page{
+        grid-template-columns:1fr;
+        text-align:center;
+        justify-items:center;
+    }
+
+    .about-left img{
+        max-width:320px;
+    }
+
+    .about-info{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .project-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .reflect-stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+/* ---------- MOBILE (<=700px) ---------- */
+@media(max-width:700px){
+
+    body{
+        padding-top:104px;
+    }
+
+    /* ---------- NAV ---------- */
+    nav{
+        top:12px;
+        width:90%;
+        padding:14px 20px;
+    }
+
+    nav.scrolled{
+        padding:12px 20px;
+    }
+
+    .logo{
+        font-size:24px;
+    }
+
+    .hamburger{
+        display:flex;
+    }
+
+    .nav-menu{
+        position:absolute;
+        top:calc(100% + 12px);
+        left:0;
+        right:0;
+        flex-direction:column;
+        align-items:stretch;
+        gap:0;
+        background:var(--paper);
+        border:1px solid var(--line);
+        border-radius:22px;
+        box-shadow:var(--shadow-lg);
+        padding:10px;
+        max-height:0;
+        overflow:hidden;
+        opacity:0;
+        pointer-events:none;
+        transition:max-height .3s ease, opacity .25s ease;
+        display:flex;
+    }
+
+    .nav-menu.show{
+        max-height:400px;
+        opacity:1;
+        pointer-events:auto;
+    }
+
+    .nav-menu li{
+        width:100%;
+    }
+
+    .nav-menu a{
+        display:block;
+        padding:14px 16px;
+        border-radius:14px;
+        font-size:17px;
+    }
+
+    .nav-menu a:hover{
+        background:var(--cream-soft);
+    }
+
+    .nav-menu a::after{
+        display:none;
+    }
+
+    body.dark .nav-menu{
+        background:var(--maroon-900);
+        border-color:var(--line-dark);
+    }
+
+    body.dark .nav-menu a:hover{
+        background:rgba(251,242,225,.06);
+    }
+
+    /* ---------- HERO ---------- */
+    .hero{
+        margin:30px auto;
+        padding:20px;
+        gap:35px;
+        min-height:auto;
+    }
+
+    .hero-tag{
+        font-size:13px;
+    }
+
+    .hero h1{
+        font-size:40px;
+    }
+
+    .hero h2{
+        font-size:23px;
+    }
+
+    .description{
+        font-size:16px;
+        line-height:1.7;
+    }
+
+    .hero-button{
+        flex-direction:column;
+        width:100%;
+        gap:14px;
+    }
+
+    .btn,
+    .btn2{
+        text-align:center;
+        width:100%;
+        padding:15px 20px;
+    }
+
+    .glass-circle{
+        width:220px;
+        height:220px;
+    }
+
+    /* ---------- OVERVIEW / STATS ---------- */
+    .overview{
+        margin:70px auto;
+    }
+
+    .overview-grid{
+        grid-template-columns:1fr;
+        gap:18px;
+    }
+
+    .section-title{
+        font-size:30px;
+    }
+
+    .section-description{
+        font-size:15px;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+        gap:24px 15px;
+        padding:50px 6%;
+    }
+
+    .stat h2{
+        font-size:30px;
+    }
+
+    /* ---------- ABOUT ---------- */
+    .about-page{
+        margin:20px auto 40px;
+        gap:32px;
+        padding:15px;
+    }
+
+    .about-right h1{
+        font-size:36px;
+    }
+
+    .about-right p{
+        font-size:15px;
+    }
+
+    .about-info{
+        grid-template-columns:1fr;
+    }
+
+    .info-card{
+        padding:20px;
+    }
+
+    /* ---------- PROJECTS ---------- */
+    .projects-page{
+        margin:20px auto 0;
+        padding:15px;
+    }
+
+    .projects-page h1{
+        font-size:32px;
+    }
+
+    .project-grid{
+        grid-template-columns:1fr;
+        gap:22px;
+        margin:40px 0 60px;
+    }
+
+    .project-card img{
+        height:190px;
+    }
+
+    .project-content{
+        padding:22px;
+    }
+
+    .project-content h2{
+        font-size:21px;
+    }
+
+    .status{
+        font-size:12px;
+        padding:6px 14px;
+    }
+
+    .project-info{
+        flex-wrap:wrap;
+        gap:10px 20px;
+    }
+
+    .btn-project{
+        width:100%;
+        text-align:center;
+    }
+
+    /* ---------- TASK PAGES ---------- */
+    .task-hero{
+        padding-top:20px;
+        padding-bottom:44px;
+    }
+
+    .task-hero h1{
+        font-size:30px;
+    }
+
+    .task-hero p{
+        font-size:15px;
+    }
+
+    .task-box{
+        padding:22px;
+    }
+
+    .task-content{
+        padding:15px;
+        gap:20px;
+    }
+
+    .pdf-frame,
+    .pdf-preview iframe{
+        height:400px;
+    }
+
+    .portfolio-table th,
+    .portfolio-table td{
+        padding:10px;
+        font-size:13px;
+    }
+
+    .task-navigation{
+        flex-direction:column;
+        gap:16px;
+    }
+
+    /* ---------- GALLERY / TIMELINE ---------- */
+    .gallery{
+        grid-template-columns:1fr;
+    }
+
+    .timeline-item{
+        flex-direction:column;
+    }
+
+    .timeline::before{
+        display:none;
+    }
+
+    /* ---------- REFLECTION ---------- */
+    .reflection-page{
+        margin:20px auto 0;
+    }
+
+    .reflection-page h1{
+        font-size:34px;
+    }
+
+    .reflect-stats{
+        grid-template-columns:1fr 1fr;
+        gap:14px;
+    }
+
+    .reflect-quote{
+        padding:40px 24px;
+    }
+
+    .reflect-quote p{
+        font-size:18px;
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer{
+        margin-top:70px;
+        padding:50px 6% 30px;
+        border-top-left-radius:32px;
+        border-top-right-radius:32px;
+    }
+
+    .footer-container{
+        grid-template-columns:1fr;
+        gap:34px;
+        text-align:center;
+    }
+
+    .footer-links{
+        align-items:center;
+    }
+
+    /* ---------- BACK TO TOP ---------- */
+    #topBtn{
+        right:16px;
+        bottom:16px;
+        width:48px;
+        height:48px;
+        font-size:19px;
+    }
+}
+
+/* ---------- SMALL MOBILE (<=420px) ---------- */
+@media(max-width:420px){
+
+    .hero h1{
+        font-size:32px;
+    }
+
+    .hero h2{
+        font-size:20px;
+    }
+
+    .glass-circle{
+        width:170px;
+        height:170px;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .reflect-stats{
+        grid-template-columns:1fr;
+    }
+
+    .task-navigation{
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .about-right h1{
+        font-size:28px;
+    }
+
+    .task-hero h1{
+        font-size:25px;
+    }
+
+    .projects-page h1{
+        font-size:27px;
+    }
+}
