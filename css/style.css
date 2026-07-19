@@ -1,58 +1,66 @@
 /* =====================================================================
    PORTFOLIO — Ngô Huyền Linh
-   Design language: cream (#FDF6E8) + sky-blue (#3E9FD1) + soft pink accent,
-   playful rounded display type, scalloped/wavy motifs — adapted from a
-   pastel "candle shop" reference style. No blur / glassmorphism.
+   Design language: cream (#FFF7E6) + leaf green (#6CA24A) + sunshine /
+   marigold / blush / sage accents, whimsical illustrative nature-inspired
+   style — adapted from the "Sealed Stories" brand style guide.
+   Note: "Quiche Sans" is a paid font (not on Google Fonts); substituted
+   with Fredoka, a free rounded display font with a similarly warm,
+   whimsical character. Nunito is used for body text as specified.
 ===================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@300;400;500;600;700;800&display=swap');
 
 /* ---------------------------------------------------------------
    0. DESIGN TOKENS
    (variable names kept for compatibility with the rest of the file;
-   values re-themed to the pastel sky-blue / pink / cream palette)
+   values re-themed to the "Sealed Stories" palette)
 --------------------------------------------------------------- */
 :root{
-    --cream:        #FDF6E8;
-    --cream-soft:   #FBEEDA;
-    --paper:        #FFFDF8;
+    --cream:        #FFF7E6;
+    --cream-soft:   #FBF0D9;
+    --paper:        #FFFDF7;
 
-    --maroon-950:   #123147;
-    --maroon-900:   #163D57;
-    --maroon:       #2E86C1;
-    --maroon-700:   #24699C;
-    --maroon-600:   #3E9FD1;
-    --maroon-400:   #F2A6C6;
+    --maroon-950:   #29401D;
+    --maroon-900:   #375A28;
+    --maroon:       #6CA24A;
+    --maroon-700:   #578A3A;
+    --maroon-600:   #F28C38;
+    --maroon-400:   #F7B7C4;
 
-    --ink:          #21384A;
-    --body-text:    #55707F;
-    --body-text-dark: #DCEEFA;
+    --ink:          #33421F;
+    --body-text:    #6B7A5A;
+    --body-text-dark: #EAF2DE;
 
-    --pink:         #F2A6C6;
-    --pink-soft:    #FBE2EC;
-    --leaf:         #8FBF7F;
+    --sunshine:     #F4C542;
+    --marigold:     #F28C38;
+    --pink:         #F7B7C4;
+    --pink-soft:    #FCE7EC;
+    --leaf:         #C7DDAE;
 
-    --line:         rgba(46,134,193,.16);
-    --line-dark:    rgba(253,246,232,.18);
+    --line:         rgba(108,162,74,.18);
+    --line-dark:    rgba(255,247,230,.2);
 
-    --shadow-sm:    0 8px 20px rgba(33,56,74,.08);
-    --shadow-md:    0 16px 36px rgba(33,56,74,.10);
-    --shadow-lg:    0 26px 56px rgba(33,56,74,.14);
+    --shadow-sm:    0 8px 20px rgba(51,66,31,.08);
+    --shadow-md:    0 16px 36px rgba(51,66,31,.10);
+    --shadow-lg:    0 26px 56px rgba(51,66,31,.14);
 
     --radius-sm:    14px;
     --radius-md:    22px;
     --radius-lg:    30px;
     --radius-pill:  999px;
 
-    --font-display: 'Baloo 2', system-ui, sans-serif;
-    --font-body:    'Poppins', system-ui, sans-serif;
+    --font-display: 'Fredoka', system-ui, sans-serif;
+    --font-body:    'Nunito', system-ui, sans-serif;
 
     /* wavy-line motif, tileable, colour swapped per surface */
-    --wave-on-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='70' viewBox='0 0 220 70'%3E%3Cpath d='M0 35 C 27 5, 82 65, 110 35 S 193 5, 220 35' stroke='%23FDF6E8' stroke-width='2' fill='none' opacity='.2'/%3E%3C/svg%3E");
-    --wave-on-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='70' viewBox='0 0 220 70'%3E%3Cpath d='M0 35 C 27 5, 82 65, 110 35 S 193 5, 220 35' stroke='%232E86C1' stroke-width='2' fill='none' opacity='.14'/%3E%3C/svg%3E");
+    --wave-on-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='70' viewBox='0 0 220 70'%3E%3Cpath d='M0 35 C 27 5, 82 65, 110 35 S 193 5, 220 35' stroke='%23FFF7E6' stroke-width='2' fill='none' opacity='.2'/%3E%3C/svg%3E");
+    --wave-on-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='70' viewBox='0 0 220 70'%3E%3Cpath d='M0 35 C 27 5, 82 65, 110 35 S 193 5, 220 35' stroke='%236CA24A' stroke-width='2' fill='none' opacity='.14'/%3E%3C/svg%3E");
 
     /* scalloped bottom edge, used under the hero card */
-    --scallop-edge: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='34' viewBox='0 0 140 34'%3E%3Cpath d='M0 0 C 11.6 0 11.6 24 23.3 24 C 35 24 35 0 46.6 0 C 58.3 0 58.3 24 70 24 C 81.6 24 81.6 0 93.3 0 C 105 0 105 24 116.6 24 C 128.3 24 128.3 0 140 0 L140 34 L0 34 Z' fill='%23FDF6E8'/%3E%3C/svg%3E");
+    --scallop-edge: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='34' viewBox='0 0 140 34'%3E%3Cpath d='M0 0 C 11.6 0 11.6 24 23.3 24 C 35 24 35 0 46.6 0 C 58.3 0 58.3 24 70 24 C 81.6 24 81.6 0 93.3 0 C 105 0 105 24 116.6 24 C 128.3 24 128.3 0 140 0 L140 34 L0 34 Z' fill='%23FFF7E6'/%3E%3C/svg%3E");
+
+    /* small whimsical flower doodle, used as a decorative accent */
+    --flower-doodle: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='%23F4C542'%3E%3Ccircle cx='30' cy='14' r='10'/%3E%3Ccircle cx='46' cy='30' r='10'/%3E%3Ccircle cx='30' cy='46' r='10'/%3E%3Ccircle cx='14' cy='30' r='10'/%3E%3C/g%3E%3Ccircle cx='30' cy='30' r='9' fill='%23F28C38'/%3E%3C/svg%3E");
 }
 
 /* ---------------------------------------------------------------
@@ -244,19 +252,42 @@ nav.scrolled{
 .hero{
     position:relative;
     max-width:1300px;
-    min-height:78vh;
+    min-height:74vh;
     margin:20px auto 0;
-    padding:70px 50px 100px;
+    padding:70px 60px 90px;
     display:flex;
     justify-content:space-between;
     align-items:center;
     gap:70px;
-    background:linear-gradient(180deg,var(--maroon-600) 0%,var(--maroon) 100%);
-    background-image:linear-gradient(180deg,var(--maroon-600) 0%,var(--maroon) 100%), var(--wave-on-dark);
-    background-repeat:no-repeat, repeat;
+    background:var(--paper);
+    border:2px solid var(--line);
     border-radius:60px;
     box-shadow:var(--shadow-lg);
-    overflow:visible;
+    overflow:hidden;
+}
+
+.hero::before,
+.hero::after{
+    content:"";
+    position:absolute;
+    width:60px;
+    height:60px;
+    background-image:var(--flower-doodle);
+    background-repeat:no-repeat;
+    background-size:contain;
+    opacity:.85;
+}
+
+.hero::before{
+    top:36px;
+    left:36px;
+    transform:rotate(-12deg) scale(.8);
+}
+
+.hero::after{
+    bottom:34px;
+    right:38%;
+    transform:rotate(18deg) scale(.55);
 }
 
 .wave-divider{
@@ -267,45 +298,42 @@ nav.scrolled{
     background-repeat:repeat-x;
     background-position:center;
     background-size:120px 30px;
-    opacity:.55;
+    opacity:.7;
 }
 
 .hero .hero-tag{
-    background:rgba(253,246,232,.22);
-    border-color:rgba(253,246,232,.4);
-    color:var(--cream);
-}
-
-.hero h1,
-.hero h2{
-    color:var(--cream);
+    background:var(--pink-soft);
+    border-color:var(--pink);
+    color:var(--marigold);
 }
 
 .hero .description{
-    color:var(--body-text-dark);
+    color:var(--body-text);
 }
 
 .hero .btn{
-    background:var(--pink);
-    color:var(--maroon-950);
-}
-
-.hero .btn:hover{
-    background:#EE8DB5;
-}
-
-.hero .btn2{
-    border-color:var(--cream);
+    background:var(--maroon);
     color:var(--cream);
 }
 
-.hero .btn2:hover{
-    background:var(--cream);
+.hero .btn:hover{
+    background:var(--maroon-700);
+}
+
+.hero .btn2{
+    border-color:var(--maroon);
     color:var(--maroon);
+}
+
+.hero .btn2:hover{
+    background:var(--maroon);
+    color:var(--cream);
 }
 
 .hero-left{
     flex:1;
+    position:relative;
+    z-index:1;
     animation:fadeSlideLeft .8s ease both;
 }
 
@@ -314,6 +342,7 @@ nav.scrolled{
     display:flex;
     justify-content:center;
     position:relative;
+    z-index:1;
     animation:fadeSlideRight .8s ease both;
 }
 
@@ -340,13 +369,13 @@ nav.scrolled{
 }
 
 .hero h1{
-    font-size:74px;
-    font-weight:800;
+    font-size:70px;
+    font-weight:700;
 }
 
 .hero h2{
     margin:16px 0 22px;
-    font-size:28px;
+    font-size:26px;
     font-weight:600;
     color:var(--maroon-600);
 }
@@ -366,11 +395,11 @@ nav.scrolled{
 
 .glass-circle{
     position:relative;
-    width:400px;
-    height:400px;
+    width:380px;
+    height:380px;
     border-radius:52% 48% 46% 54% / 55% 45% 55% 45%;
-    background:var(--cream);
-    border:5px solid var(--cream);
+    background:var(--leaf);
+    border:5px solid var(--paper);
     display:flex;
     justify-content:center;
     align-items:center;
@@ -383,7 +412,7 @@ nav.scrolled{
     position:absolute;
     inset:-22px;
     border-radius:48% 52% 54% 46% / 45% 55% 45% 55%;
-    border:2px dashed rgba(253,246,232,.5);
+    border:2px dashed var(--pink);
     z-index:-1;
 }
 
