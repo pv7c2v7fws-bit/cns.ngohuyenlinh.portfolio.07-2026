@@ -3,12 +3,14 @@
    Design language: cream (#FFF7E6) + leaf green (#6CA24A) + sunshine /
    marigold / blush / sage accents, whimsical illustrative nature-inspired
    style — adapted from the "Sealed Stories" brand style guide.
-   Note: "Quiche Sans" is a paid font (not on Google Fonts); substituted
-   with Fredoka, a free rounded display font with a similarly warm,
-   whimsical character. Nunito is used for body text as specified.
+   Note: "Quiche Sans" is a paid font (not on Google Fonts); the display
+   font used here is Baloo 2 — free, rounded/playful, and with full
+   Vietnamese diacritic support (Fredoka was tried first but its
+   Vietnamese glyph coverage is broken/incomplete). Nunito is used for
+   body text as specified, and also fully supports Vietnamese.
 ===================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@300;400;500;600;700;800&display=swap');
 
 /* ---------------------------------------------------------------
    0. DESIGN TOKENS
@@ -49,7 +51,7 @@
     --radius-lg:    30px;
     --radius-pill:  999px;
 
-    --font-display: 'Fredoka', system-ui, sans-serif;
+    --font-display: 'Baloo 2', system-ui, sans-serif;
     --font-body:    'Nunito', system-ui, sans-serif;
 
     /* wavy-line motif, tileable, colour swapped per surface */
@@ -77,6 +79,7 @@ html{
 }
 
 body{
+    position:relative;
     font-family:var(--font-body);
     background:var(--cream);
     color:var(--ink);
@@ -84,6 +87,71 @@ body{
     padding-top:132px;
     overflow-x:hidden;
     line-height:1.6;
+}
+
+/* ---------------------------------------------------------------
+   1b. DECORATIVE FLOWER BACKGROUND
+   Scattered flower illustrations sitting behind all page content.
+   z-index:-1 guarantees they always paint underneath text, photos,
+   cards, nav and footer (which all have their own backgrounds), so
+   they only ever show through the empty cream gaps of the layout.
+--------------------------------------------------------------- */
+body::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:-1;
+    pointer-events:none;
+    background-repeat:no-repeat;
+    background-image:
+        url("../assets/images/decor/flower-6.png"),
+        url("../assets/images/decor/flower-1.png"),
+        url("../assets/images/decor/flower-4.png"),
+        url("../assets/images/decor/flower-2.png"),
+        url("../assets/images/decor/flower-5.png"),
+        url("../assets/images/decor/flower-1.png"),
+        url("../assets/images/decor/flower-6.png"),
+        url("../assets/images/decor/flower-4.png");
+    background-position:
+        3% 6%,
+        92% 4%,
+        6% 34%,
+        95% 40%,
+        2% 66%,
+        90% 72%,
+        8% 92%,
+        94% 96%;
+    background-size:
+        90px auto,
+        70px auto,
+        120px auto,
+        95px auto,
+        110px auto,
+        60px auto,
+        100px auto,
+        80px auto;
+    opacity:.85;
+}
+
+@media (max-width:900px){
+    body::before{
+        background-size:
+            60px auto,
+            50px auto,
+            80px auto,
+            65px auto,
+            75px auto,
+            45px auto,
+            70px auto,
+            55px auto;
+        opacity:.6;
+    }
+}
+
+@media (max-width:560px){
+    body::before{
+        display:none;
+    }
 }
 
 h1,h2,h3,h4{
@@ -370,7 +438,7 @@ nav.scrolled{
 
 .hero h1{
     font-size:70px;
-    font-weight:700;
+    font-weight:800;
 }
 
 .hero h2{
